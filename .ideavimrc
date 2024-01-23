@@ -1,0 +1,171 @@
+" These settings are from - https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+" https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+" https://centic9.github.io/IntelliJ-Action-IDs/
+
+set number
+set relativenumber
+set ignorecase
+set smartcase
+set scrolloff=3 " 3 lines above/below cursor when scrolling
+
+" Emulated Plugins
+set surround
+" set easymotion
+set NERDTree
+
+" Copy to system clipboard as well
+set clipboard+=unnamed
+
+" Use Idea to join lines smartly
+set ideajoin
+
+set idearefactormode=keep
+
+" Multiple cursors support
+set multiple-cursors
+
+let mapleader = " "
+
+" Exit insert mode
+inoremap kj <Esc>
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <leader>h <c-w>h
+nmap <leader>l <c-w>l
+nmap <leader>k <c-w>k
+nmap <leader>j <c-w>j
+nnoremap <a-h> gT
+nnoremap <a-l> gt
+
+" key bindings for quickly moving inside buffer
+" IdeaVim uses 'a' for alt instead of Vim's 'm'
+nmap <a-j> 15gj
+nmap <a-k> 15gk
+
+" Closing tabs
+nmap <leader>q :action CloseContent<cr>
+nmap <leader>Q :action ReopenClosedTab<cr>
+
+" Switch projects
+nmap <leader>ww :action NextProjectWindow<cr>
+
+" To navigate between split panes
+nmap <leader>wo :action NextSplitter<cr>
+nmap <leader>wp :action PrevSplitter<cr>
+
+" Full screen window
+nmap <leader>wf :action HideAllWindows<cr>
+
+" Splits manipulation
+nmap <leader>s :action SplitHorizontally<cr> :action CloseContent<cr>
+nmap <leader>v :action SplitVertically<cr> :action CloseContent<cr>
+nmap <leader>wd :action OpenEditorInOppositeTabGroup<cr> :action CloseContent<cr>
+nmap <leader>c :action Unsplit<cr>
+nmap <leader>wC :action UnsplitAll<cr>
+nmap <leader><leader> :action VimFilePrevious<cr>
+
+" NERDTree
+map <leader>nn :NERDTree<CR>
+map <leader>nf :NERDTreeFind<CR>
+
+" Navigation
+nmap <leader>d :action GotoDeclaration<cr>
+nmap <leader>i :action GotoImplementation<cr>
+nmap <leader>U :action GotoSuperMethod<cr>
+nmap <leader>u :action FindUsages<cr>
+
+nmap <leader>L :action RecentLocations<cr>
+nmap <leader>H :action CallHierarchy<cr>
+nmap <leader>f :action GotoFile<cr>
+nmap <leader>C :action GotoClass<cr>
+nmap ,a :action GotoAction<cr>
+
+nmap <leader>; :action FileStructurePopup<cr>
+nmap <leader>M :action ActivateStructureToolWindow<cr>
+
+nmap <leader>I :action SelectIn<cr>
+nmap <leader>e :action RecentFiles<cr>
+nmap <leader>a :action RecentChangedFiles<cr>
+nmap <leader>t :action GotoTest<cr>
+nmap <leader>p :action JumpToLastWindow<cr>
+
+nmap <leader>m :action ToggleBookmark<cr>
+nmap <leader>b :action ShowBookmarks<cr>
+
+" Errors
+nmap <leader>x :action GotoNextError<cr>
+nmap <leader>X :action GotoPreviousError<cr>
+
+" Refactorings
+vmap T :action Refactorings.QuickListPopupAction<cr>
+vmap <leader>rm :action ExtractMethod<cr>
+vmap <leader>rv :action IntroduceVariable<cr>
+nmap <leader>re :action RenameElement<cr>
+nmap <leader>rg :action Generate<cr>
+nmap <leader>ri :action OptimizeImports<cr>
+
+" Inspection
+nmap <leader>rc :action InspectCode<cr> T
+
+" VCS operations
+nmap <leader>yy :action Vcs.Show.Local.Changes<cr>
+nmap <leader>yp :action Vcs.QuickListPopupAction<cr>
+nmap <leader>ya :action Annotate<cr>
+nmap <leader>yl :action Vcs.Show.Log<cr>
+nmap <leader>yd :action Compare.LastVersion<cr>
+nmap <leader>yP :action Git.Pull<cr>
+nmap <leader>yr :action Git.ResolveConflicts<cr>
+
+nnoremap [<space> O<esc>j
+nnoremap ]<space> o<esc>k
+nnoremap [q :action PreviousOccurence<cr>
+nnoremap ]q :action NextOccurence<cr>
+nnoremap [[ :action MethodUp<cr>
+nnoremap ]] :action MethodDown<cr>
+nnoremap [c :action VcsShowPrevChangeMarker<cr>
+nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+" Search
+nmap <leader>/ :action Find<cr>
+nmap <leader>\ :action FindInPath<cr>
+
+" Moving lines
+nmap [e :action MoveLineUp<cr>
+nmap ]e :action MoveLineDown<cr>
+
+" Moving statements
+nmap [s :action MoveStatementUp<cr>
+nmap ]s :action MoveStatementDown<cr>
+
+" Building, Running and Debugging [TODO: change these to fit]
+nmap ,c :action CompileDirty<cr>
+nmap ,r :action Run<cr>
+nmap ,R :action RunAnything<cr>
+nmap ,b :action Debug<cr>
+nmap ,c :action RunClass<cr>
+nmap ,d :action DebugClass<cr>
+nmap ,t :action RerunTests<cr>
+nmap ,T :action RerunFailedTests<cr>
+nmap ,p :action ToggleLineBreakpoint<cr>
+nmap ,i :action ParameterInfo<cr>
+
+" Useful Quick actions [TODO: change these to fit]
+nmap ,, :action QuickJavaDoc<cr>
+nmap ,H :action LocalHistory.ShowHistory<cr>
+nmap ,e :action JumpToLastChange<cr>
+nmap ,yy :action CopySourceRootPath<cr>
+nmap ,ya :action CopyAbsolutePath<cr>
+nmap ,S :action ShowProjectStructureSettings<cr>
+
+" Increase or decrease font size
+nnoremap <C-=> :action EditorIncreaseFontSize<cr>
+nnoremap <C--> :action EditorDecreaseFontSize<cr>
